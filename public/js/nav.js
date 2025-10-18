@@ -5,11 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutBtn = document.getElementById('logout-btn');
 
     // Check user's authentication status
-    fetch('/api/auth/me', {
+    // --- THIS LINE IS UPDATED ---
+    fetch('https://job-portal-7fep.onrender.com/api/auth/me', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        credentials: 'include' // ⚠️ IMPORTANT: Send cookies
     })
     .then(res => {
         if (res.ok) {
@@ -33,8 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add logout functionality
     logoutBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        fetch('/api/auth/logout', {
-            method: 'GET'
+        // --- THIS LINE IS UPDATED ---
+        fetch('https://job-portal-7fep.onrender.com/api/auth/logout', {
+            method: 'GET',
+            credentials: 'include' // ⚠️ IMPORTANT: Send cookies
         })
         .then(res => {
             if (res.ok) {

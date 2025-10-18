@@ -16,7 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch job details
     const fetchJobDetails = async () => {
         try {
-            const res = await fetch(`/api/jobs/${jobId}`);
+            // --- THIS LINE IS UPDATED with the correct path ---
+            const res = await fetch(`https://job-portal-7fep.onrender.com/api/jobs/${jobId}`);
+            
             if (!res.ok) {
                 throw new Error('Job not found');
             }
@@ -54,8 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
         applyMessage.className = '';
 
         try {
-            const res = await fetch(`/api/jobs/${jobId}/apply`, {
-                method: 'POST'
+            // --- THIS BLOCK IS UPDATED with URL and credentials ---
+            const res = await fetch(`https://job-portal-7fep.onrender.com/api/jobs/${jobId}/apply`, {
+                method: 'POST',
+                credentials: 'include' // ⚠️ IMPORTANT: Send cookies
             });
 
             const data = await res.json();
@@ -78,7 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Check user role to show/hide apply button
     const checkUserRole = async () => {
-        const res = await fetch('/api/auth/me');
+        // --- THIS BLOCK IS UPDATED with URL and credentials ---
+        const res = await fetch('https://job-portal-7fep.onrender.com/api/auth/me', {
+            credentials: 'include' // ⚠️ IMPORTANT: Send cookies
+        });
+
         if (res.ok) {
             const user = await res.json();
             if (user.role === 'job_seeker') {

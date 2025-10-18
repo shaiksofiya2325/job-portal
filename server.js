@@ -14,27 +14,30 @@ mongoose.connect(process.env.MONGO_URI)
 .catch(err => console.error('MongoDB connection error:', err));
 
 // --- Middleware ---
+const FRONTEND_URL = 'https://job-portal-1-lxe1.onrender.com';
 
-// CORS: Allow frontend (running on the same origin) to send credentials
+// CORS: Allow ONLY your live frontend to make requests
 app.use(cors({
-    origin: `http://localhost:${PORT}`, // Allow requests from our own frontend
+    origin: FRONTEND_URL, 
     credentials: true // Allow cookies to be sent
 }));
 
-// Body Parsers: To read req.body
+// Body Parsers (same as before)
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
-// Session Configuration
+// Production Session Configuration
+app.set('trust proxy', 1); // Trust the Render proxy
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
     cookie: {
-        httpOnly: true, // Prevent client-side JS from reading the cookie
-        secure: false, // Set to true in production (when using HTTPS)
-        maxAge: 1000 * 60 * 60 * 24 // 1 day
+        httpOnly: true,
+        secure: true, // REQUIRES HTTPS
+        maxAge: 1000 * 60 * 60 * 24, // 1 day
+        sameSite: 'none' // REQUIRED for cross-origin cookies
     }
 }));
 

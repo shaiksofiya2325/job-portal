@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch the public profile data
     const fetchProfile = async () => {
         try {
-            const res = await fetch(`/api/users/${userId}/profile`);
+            // --- THIS LINE IS UPDATED ---
+            const res = await fetch(`https://job-portal-7fep.onrender.com/api/users/${userId}/profile`);
+            
             if (!res.ok) {
                 const err = await res.json();
                 throw new Error(err.message || 'Could not load profile.');
@@ -52,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${skillsHTML}
                 </div>
             </div>
-
             `;
     };
 

@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             // Build query string
             const query = new URLSearchParams(searchParams).toString();
-            const res = await fetch(`/api/jobs?${query}`);
+            const res = await fetch(`https://job-portal-7fep.onrender.com/api/jobs?${query}`);
             
             if (!res.ok) {
                 throw new Error('Error fetching jobs');

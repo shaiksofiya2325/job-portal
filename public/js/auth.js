@@ -13,10 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = document.getElementById('password').value;
 
             try {
-                const res = await fetch('/api/auth/login', {
+                // --- UPDATED URL and added credentials ---
+                const res = await fetch('https://job-portal-7fep.onrender.com/api/auth/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
+                    body: JSON.stringify({ email, password }),
+                    credentials: 'include' // ⚠️ IMPORTANT: Send cookies
                 });
 
                 const data = await res.json();
@@ -44,10 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const role = document.querySelector('input[name="role"]:checked').value;
 
             try {
-                const res = await fetch('/api/auth/register', {
+                // --- UPDATED URL and added credentials ---
+                const res = await fetch('https://job-portal-7fep.onrender.com/api/auth/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email, password, role })
+                    body: JSON.stringify({ name, email, password, role }),
+                    credentials: 'include' // ⚠️ IMPORTANT: Send cookies
                 });
 
                 const data = await res.json();

@@ -7,7 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Common Functions ---
     const checkAuth = async () => {
         try {
-            const res = await fetch('/api/auth/me');
+            // --- UPDATED URL and added credentials ---
+            const res = await fetch('https://job-portal-7fep.onrender.com/api/auth/me', {
+                credentials: 'include'
+            });
+
             if (!res.ok) {
                 window.location.href = '/login.html';
                 return;
@@ -48,10 +52,12 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                const res = await fetch('/api/jobs', {
+                // --- UPDATED URL and added credentials ---
+                const res = await fetch('https://job-portal-7fep.onrender.com/api/jobs', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(jobData)
+                    body: JSON.stringify(jobData),
+                    credentials: 'include'
                 });
                 
                 if (!res.ok) {
@@ -72,7 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Fetch and display posted jobs
         const fetchPostedJobs = async () => {
             try {
-                const res = await fetch('/api/jobs/employer/my-jobs');
+                // --- UPDATED URL and added credentials ---
+                const res = await fetch('https://job-portal-7fep.onrender.com/api/jobs/employer/my-jobs', {
+                    credentials: 'include'
+                });
                 
                 if (!res.ok) {
                     const errData = await res.json();
@@ -91,19 +100,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     const jobItem = document.createElement('div');
                     jobItem.className = 'dashboard-job-item';
                     
-                    // --- THIS FUNCTION NOW CONTAINS THE FIX ---
                     const createApplicantList = (applications) => {
                         if (applications.length === 0) {
                             return '<p>No applicants yet.</p>';
                         }
                         
                         return applications.map(app => {
-                            // Use optional chaining (?.) to prevent errors
                             const applicantName = app.applicant?.name || 'Deleted User';
                             const applicantEmail = app.applicant?.email || 'N/A';
                             const applicantId = app.applicant?._id;
 
-                            // If the applicant doesn't exist, don't make it a link
                             const nameHTML = applicantId
                                 ? `<a href="/profile.html?id=${applicantId}" target="_blank">${applicantName}</a>`
                                 : applicantName;
@@ -155,7 +161,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const jobId = e.target.getAttribute('data-id');
                 if (confirm('Are you sure you want to delete this job?')) {
                     try {
-                        const res = await fetch(`/api/jobs/${jobId}`, { method: 'DELETE' });
+                        // --- UPDATED URL and added credentials ---
+                        const res = await fetch(`https://job-portal-7fep.onrender.com/api/jobs/${jobId}`, {
+                            method: 'DELETE',
+                            credentials: 'include'
+                        });
                         if (!res.ok) throw new Error('Failed to delete job');
                         fetchPostedJobs(); // Refresh list
                     } catch (err) {
@@ -174,10 +184,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const newStatus = selectEl.value;
                 
                 try {
-                    const res = await fetch(`/api/jobs/${jobId}/applications/${appId}`, {
+                    // --- UPDATED URL and added credentials ---
+                    const res = await fetch(`https://job-portal-7fep.onrender.com/api/jobs/${jobId}/applications/${appId}`, {
                         method: 'PUT',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ status: newStatus })
+                        body: JSON.stringify({ status: newStatus }),
+                        credentials: 'include'
                     });
                     
                     if (!res.ok) throw new Error('Failed to update status');
@@ -218,10 +230,12 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                const res = await fetch('/api/auth/profile', {
+                // --- UPDATED URL and added credentials ---
+                const res = await fetch('https://job-portal-7fep.onrender.com/api/auth/profile', {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(profileData)
+                    body: JSON.stringify(profileData),
+                    credentials: 'include'
                 });
                 
                 if (!res.ok) {
@@ -243,7 +257,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Fetch applications
         const fetchApplications = async () => {
             try {
-                const res = await fetch('/api/jobs/seeker/my-applications');
+                // --- UPDATED URL and added credentials ---
+                const res = await fetch('https://job-portal-7fep.onrender.com/api/jobs/seeker/my-applications', {
+                    credentials: 'include'
+                });
 
                 if (!res.ok) {
                     const errData = await res.json();
