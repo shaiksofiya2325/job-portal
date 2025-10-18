@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details - Job Portal</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo"><a href="/">JobPortal</a></div>
+        <ul class="nav-links">
+            <li><a href="/">Find Jobs</a></li>
+            <li id="login-link"><a href="/login.html">Login</a></li>
+            <li id="register-link"><a href="/register.html">Register</a></li>
+            <li id="dashboard-link" class="nav-hidden"><a href="/dashboard.html">Dashboard</a></li>
+            <li id="logout-btn" class="nav-hidden"><a href="#">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="container" id="job-details-container">
+            </div>
+        <div class="container" id="job-apply-container" style="display: none;">
+            <button id="apply-btn" class="btn">Apply for this Job</button>
+            <p id="apply-message"></p>
+        </div>
+    </main>
+
+    <script src="/js/nav.js"></script>
+    <script src="/js/job-details.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Job Portal</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo"><a href="/">JobPortal</a></div>
+        <ul class="nav-links">
+            <li><a href="/">Find Jobs</a></li>
+            <li id="login-link"><a href="/login.html">Login</a></li>
+            <li id="register-link"><a href="/register.html">Register</a></li>
+            <li id="dashboard-link" class="nav-hidden"><a href="/dashboard.html">Dashboard</a></li>
+            <li id="logout-btn" class="nav-hidden"><a href="#">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="container search-container">
+            <h1>Find Your Next Job</h1>
+            <form id="search-form">
+                <input type="text" id="search-keyword" placeholder="Job title, keywords...">
+                <input type="text" id="search-location" placeholder="Location...">
+                <select id="search-jobType">
+                    <option value="">All Job Types</option>
+                    <option value="Full-time">Full-time</option>
+                    <option value="Part-time">Part-time</option>
+                    <option value="Contract">Contract</option>
+                    <option value="Internship">Internship</option>
+                </select>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        
+        <div id="job-listings-container">
+            </div>
+    </main>
+
+    <script src="/js/nav.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Job Portal</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo"><a href="/">JobPortal</a></div>
+        <ul class="nav-links">
+            <li><a href="/">Find Jobs</a></li>
+            <li id="login-link" class="nav-hidden"><a href="/login.html">Login</a></li>
+            <li id="register-link" class="nav-hidden"><a href="/register.html">Register</a></li>
+            <li id="dashboard-link"><a href="/dashboard.html">Dashboard</a></li>
+            <li id="logout-btn"><a href="#">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1 id="welcome-message">Loading your dashboard...</h1>
+
+        <div id="employer-dashboard" class="dashboard-section" style="display:none;">
+            <h2>Employer Dashboard</h2>
+            <div class="container">
+                <h3>Post a New Job</h3>
+                <form id="post-job-form">
+                    <div>
+                        <label for="title">Job Title</label>
+                        <input type="text" id="title" required>
+                    </div>
+                    <div>
+                        <label for="location">Location</label>
+                        <input type="text" id="location" required>
+                    </div>
+                    <div>
+                        <label for="jobType">Job Type</label>
+                        <select id="jobType">
+                            <option value="Full-time">Full-time</option>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Internship">Internship</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="description">Description</label>
+                        <textarea id="description" rows="5" required></textarea>
+                    </div>
+                    <div>
+                        <label for="requirements">Requirements (optional)</label>
+                        <textarea id="requirements" rows="3"></textarea>
+                    </div>
+                    <button type="submit">Post Job</button>
+                    <p id="post-job-message"></p>
+                </form>
+            </div>
+            
+            <div class="container" style="margin-top: 20px;">
+                <h3>Your Active Listings</h3>
+                <div id="employer-job-list">
+                    </div>
+            </div>
+        </div>
+
+        <div id="seeker-dashboard" class="dashboard-section" style="display:none;">
+            
+            <div class="container" id="profile-form-container">
+                <h2>My Profile</h2>
+                <form id="profile-form">
+                    <p>Update your public-facing profile information.</p>
+                    <div>
+                        <label for="profile-name">Name</label>
+                        <input type="text" id="profile-name" required>
+                    </div>
+                    <div>
+                        <label for="profile-contact">Contact (Phone or Email)</label>
+                        <input type="text" id="profile-contact" placeholder="e.g., myemail@example.com">
+                    </div>
+                    <div>
+                        <label for="profile-bio">About Me (Bio)</label>
+                        <textarea id="profile-bio" rows="4" placeholder="A short summary about you..."></textarea>
+                    </div>
+                    <div>
+                        <label for="profile-skills">Skills (comma-separated)</label>
+                        <input type="text" id="profile-skills" placeholder="e.g., JavaScript, React, Node.js">
+                    </div>
+                    <button type="submit">Update Profile</button>
+                    <p id="profile-message"></p>
+                </form>
+            </div>
+
+            <div class="container" style="margin-top: 20px;">
+                <h2>Your Applications</h2>
+                <div id="seeker-application-list">
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/nav.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
